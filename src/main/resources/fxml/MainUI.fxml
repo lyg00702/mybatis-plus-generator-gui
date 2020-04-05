@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import java.lang.*?>
+<?import com.sun.javafx.scene.control.skin.CustomColorDialog.ControlsPane?>
+<BorderPane prefHeight="613.0" prefWidth="918.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lyg.mybatis.controller.MainUIController">
+    <top>
+        <VBox>
+            <children>
+                <ToolBar minHeight="70.0" prefHeight="81.0" prefWidth="918.0" BorderPane.alignment="CENTER">
+                    <items>
+                        <Label fx:id="lblConnection" contentDisplay="TOP" text="数据库连接">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                            <padding>
+                                <Insets left="10.0" right="10.0"/>
+                            </padding>
+                        </Label>
+                        <Label fx:id="lblConfigs" contentDisplay="TOP" text="配置">
+                            <padding>
+                                <Insets right="10.0"/>
+                            </padding>
+                        </Label>
+                    </items>
+                </ToolBar>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <SplitPane dividerPositions="0.15">
+            <items>
+                <AnchorPane maxWidth="500.0" minWidth="100.0" prefHeight="618.0" prefWidth="200.0">
+                    <children>
+                        <TreeView fx:id="tvLeftDB" layoutX="-14.0" maxWidth="0.0" prefHeight="545.0" prefWidth="126.0"
+                                  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                  AnchorPane.topAnchor="0.0"/>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minWidth="400.0">
+                    <children>
+                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                              AnchorPane.topAnchor="0.0">
+                            <children>
+                                <GridPane alignment="TOP_RIGHT" layoutX="5.0" layoutY="29.0" prefHeight="505.0"
+                                          prefWidth="766.0" vgap="5.0" AnchorPane.leftAnchor="-5.0"
+                                          AnchorPane.rightAnchor="10.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="157.0"
+                                                           minWidth="132.0" prefWidth="138.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="688.0" minWidth="10.0"
+                                                           prefWidth="222.0"/>
+                                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="688.0"
+                                                           minWidth="69.0" prefWidth="76.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="688.0" minWidth="10.0"
+                                                           prefWidth="108.0"/>
+                                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="688.0"
+                                                           minWidth="10.0" prefWidth="129.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="688.0" minWidth="10.0"
+                                                           prefWidth="95.0"/>
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="44.0" minHeight="10.0" prefHeight="27.0"
+                                                        vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="25.0" minHeight="8.0" prefHeight="25.0"
+                                                        vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="91.0" minHeight="0.0" prefHeight="0.0"
+                                                        vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="182.0" minHeight="8.0" prefHeight="182.0"
+                                                        vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="99.0" minHeight="11.0" prefHeight="43.0"/>
+                                    </rowConstraints>
+                                    <children>
+                                        <Label text="模块名" GridPane.rowIndex="0"/>
+                                        <TextField fx:id="txtModuleName" prefHeight="27.0" prefWidth="248.0"
+                                                   promptText="order" GridPane.columnIndex="1"
+                                                   GridPane.rowIndex="0">
+                                            <HBox.margin>
+                                                <Insets right="5.0"/>
+                                            </HBox.margin>
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0"/>
+                                            </GridPane.margin>
+                                        </TextField>
+
+                                        <Label text="作者" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                        <TextField fx:id="txtAuthor" prefHeight="27.0" prefWidth="248.0"
+                                                   promptText="Carl Lee" GridPane.columnIndex="3"
+                                                   GridPane.rowIndex="0">
+                                            <HBox.margin>
+                                                <Insets right="5.0"/>
+                                            </HBox.margin>
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0"/>
+                                            </GridPane.margin>
+                                        </TextField>
+
+                                        <Label text="项目所在目录" GridPane.rowIndex="1"/>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0"
+                                              GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="1">
+                                            <children>
+                                                <TextField fx:id="txtProjectFolder" prefHeight="27.0"
+                                                           prefWidth="463.0" promptText="D:\workspace\example">
+                                                    <HBox.margin>
+                                                        <Insets left="5.0" right="5.0"/>
+                                                    </HBox.margin>
+                                                </TextField>
+                                                <Button mnemonicParsing="false" onAction="#chooseProjectFolder"
+                                                        text="选择">
+                                                    <styleClass>
+                                                        <String fx:value="btn"/>
+                                                        <String fx:value="btn-default"/>
+                                                    </styleClass>
+                                                </Button>
+                                            </children>
+                                        </HBox>
+                                        <Label text="项目包名" GridPane.rowIndex="2"/>
+                                        <TextField fx:id="txtProjectPackage" prefHeight="27.0" prefWidth="152.0"
+                                                   promptText="com.example.project" GridPane.columnIndex="1"
+                                                   GridPane.rowIndex="2">
+                                            <HBox.margin>
+                                                <Insets right="5.0"/>
+                                            </HBox.margin>
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0"/>
+                                            </GridPane.margin>
+                                        </TextField>
+
+                                        <Label text="存放目录" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                                        <TextField fx:id="txtTargetProject" prefHeight="27.0" prefWidth="228.0"
+                                                   promptText="src/main/java" text="src/main/java"
+                                                   GridPane.columnIndex="3" GridPane.columnSpan="2"
+                                                   GridPane.rowIndex="2">
+                                            <GridPane.margin>
+                                                <Insets left="5.0"/>
+                                            </GridPane.margin>
+                                        </TextField>
+
+                                        <Label text="SuperController" GridPane.rowIndex="3"/>
+                                        <TextField fx:id="txtSuperController" prefHeight="27.0" prefWidth="348.0"
+                                                   promptText="com.common.base.BaseController"
+                                                   GridPane.columnIndex="1" GridPane.columnSpan="2"
+                                                   GridPane.rowIndex="3">
+                                            <HBox.margin>
+                                                <Insets right="5.0"/>
+                                            </HBox.margin>
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0"/>
+                                            </GridPane.margin>
+                                        </TextField>
+
+
+                                        <VBox prefHeight="53.0" prefWidth="536.0" spacing="10.0"
+                                              GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="5">
+                                            <children>
+                                                <HBox alignment="CENTER_LEFT">
+                                                    <children>
+                                                        <Label text="生成文件的编码"/>
+                                                        <ChoiceBox fx:id="choiceBoxEncoding" prefHeight="23.0"
+                                                                   prefWidth="71.0">
+                                                            <items>
+                                                                <FXCollections fx:factory="observableArrayList">
+                                                                    <String fx:value="UTF-8"/>
+                                                                </FXCollections>
+                                                            </items>
+                                                        </ChoiceBox>
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1"
+                                                      GridPane.columnSpan="3" GridPane.rowIndex="6">
+                                                    <children>
+                                                        <CheckBox fx:id="cbSupportLombok" minWidth="100.0"
+                                                                  mnemonicParsing="false" selected="true"
+                                                                  text="支持Lombok" GridPane.columnIndex="1"
+                                                                  GridPane.rowIndex="6"/>
+                                                        <CheckBox fx:id="cbOverrideEntity" mnemonicParsing="false" selected="true"
+                                                                  text="覆盖实体类" GridPane.columnIndex="2"
+                                                                  GridPane.rowIndex="6"/>
+                                                        <CheckBox fx:id="cbGenController" mnemonicParsing="false"
+                                                                  text="产生Controller" GridPane.columnIndex="3"
+                                                                  GridPane.rowIndex="6"/>
+                                                    </children>
+                                                </HBox>
+
+                                            </children>
+                                            <padding>
+                                                <Insets left="5.0"/>
+                                            </padding>
+                                        </VBox>
+
+                                        <Label text="选择的表" GridPane.rowIndex="7"/>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0"
+                                              spacing="10.0"  GridPane.columnIndex="1" GridPane.columnSpan="4"
+                                              GridPane.rowSpan="4" GridPane.rowIndex="7">
+
+                                               <ListView fx:id="listViewTables" prefHeight="300" GridPane.columnIndex="2"
+                                                         prefWidth="200" GridPane.rowIndex="9">
+                                               </ListView>
+                                            <Label text="鼠标点击+Ctrl可以多选" GridPane.rowIndex="7"/>
+                                        </HBox>
+
+                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0"
+                                              spacing="10.0" GridPane.columnIndex="1" GridPane.columnSpan="3"
+                                              GridPane.rowIndex="11">
+                                            <children>
+                                                <Button mnemonicParsing="false" onAction="#generateCode" text="代码生成">
+                                                    <styleClass>
+                                                        <String fx:value="btn-success"/>
+                                                        <String fx:value="btn"/>
+                                                    </styleClass>
+                                                </Button>
+                                                <Button mnemonicParsing="false" onAction="#saveGeneratorConfig"
+                                                        text="保存配置">
+                                                    <styleClass>
+                                                        <String fx:value="btn"/>
+                                                        <String fx:value="btn-default"/>
+                                                    </styleClass>
+                                                </Button>
+                                                <Button mnemonicParsing="false" onAction="#openTargetFolder"
+                                                        text="打开生成文件夹">
+                                                    <styleClass>
+                                                        <String fx:value="btn"/>
+                                                        <String fx:value="btn-default"/>
+                                                    </styleClass>
+                                                </Button>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </GridPane>
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                            </padding>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </center>
+</BorderPane>
