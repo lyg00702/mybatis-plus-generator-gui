@@ -3,3 +3,4 @@ logs
 .idea
 target
 *.iml
+config/sqlite3.db
