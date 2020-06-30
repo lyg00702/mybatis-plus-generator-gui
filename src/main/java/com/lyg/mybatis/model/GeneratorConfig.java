@@ -31,6 +31,8 @@ public class GeneratorConfig {
 
 	private String superController;
 
+	private String logicDeletedField;
+
 	private String encoding;
 
 	private boolean overrideEntity;

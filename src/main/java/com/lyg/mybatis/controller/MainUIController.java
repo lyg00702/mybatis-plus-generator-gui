@@ -62,6 +62,8 @@ public class MainUIController  extends BaseFXController{
     @FXML
     private TextField txtSuperController;
     @FXML
+    private TextField txtLogicDeletedField;
+    @FXML
     private TextField txtProjectPackage;
     @FXML
     private TextField txtProjectFolder;
@@ -228,6 +230,11 @@ public class MainUIController  extends BaseFXController{
         if(StringUtils.isNotBlank(txtSuperController.getText())){
             //设置BaseController
             strategy.setSuperControllerClass(txtSuperController.getText());
+        }
+
+        if(StringUtils.isNotBlank(txtLogicDeletedField.getText())){
+            //设置逻辑删除栏位
+            strategy.setLogicDeleteFieldName(txtLogicDeletedField.getText().trim());
         }
 
         //把ListView 的数据转成 数组
@@ -496,6 +503,7 @@ public class MainUIController  extends BaseFXController{
         generatorConfig.setModelPackageTargetFolder(txtTargetProject.getText());
         generatorConfig.setAuthor(txtAuthor.getText());
         generatorConfig.setSuperController(txtSuperController.getText());
+        generatorConfig.setLogicDeletedField(txtLogicDeletedField.getText().trim());
         generatorConfig.setProjectPackage(txtProjectPackage.getText());
         generatorConfig.setModuleName(txtModuleName.getText());
 
@@ -511,6 +519,7 @@ public class MainUIController  extends BaseFXController{
         txtProjectFolder.setText(generatorConfig.getProjectFolder());
         txtTargetProject.setText(generatorConfig.getModelPackageTargetFolder());
         txtSuperController.setText(generatorConfig.getSuperController());
+        txtLogicDeletedField.setText(generatorConfig.getLogicDeletedField());
         txtAuthor.setText(generatorConfig.getAuthor());
         txtModuleName.setText(generatorConfig.getModuleName());
         cbOverrideEntity.setSelected(generatorConfig.isOverrideEntity());
