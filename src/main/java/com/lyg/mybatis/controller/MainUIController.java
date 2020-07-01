@@ -1,5 +1,6 @@
 package com.lyg.mybatis.controller;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
@@ -76,6 +77,8 @@ public class MainUIController  extends BaseFXController{
     private CheckBox cbOverrideEntity;
     @FXML
     private CheckBox cbGenController;
+    @FXML
+    private CheckBox cbEnableSwagger;
     @FXML
     private ListView<String> listViewTables;
 
@@ -176,9 +179,11 @@ public class MainUIController  extends BaseFXController{
         GlobalConfig gc = new GlobalConfig();
         String projectPath = txtProjectFolder.getText();
         gc.setOutputDir(projectPath + File.separator +  txtTargetProject.getText());
+        gc.setSwagger2(cbEnableSwagger.isSelected());
+        gc.setIdType(IdType.AUTO);
         gc.setAuthor(txtAuthor.getText());
         gc.setMapperName("%sDao");
-//        gc.setFileOverride(true);
+        gc.setFileOverride(true);
         gc.setOpen(false);
         mpg.setGlobalConfig(gc);
 
@@ -246,7 +251,7 @@ public class MainUIController  extends BaseFXController{
 
         strategy.setEntityColumnConstant(true);
         strategy.setInclude(arrTable);
-        strategy.setSuperEntityColumns("id");
+//        strategy.setSuperEntityColumns("id");
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);
@@ -511,6 +516,7 @@ public class MainUIController  extends BaseFXController{
         generatorConfig.setSupportLombok(cbSupportLombok.isSelected());
         generatorConfig.setOverrideEntity(cbOverrideEntity.isSelected());
         generatorConfig.setGenController(cbGenController.isSelected());
+        generatorConfig.setEnableSwagger(cbEnableSwagger.isSelected());
 
         return generatorConfig;
     }

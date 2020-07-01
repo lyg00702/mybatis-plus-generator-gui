@@ -208,6 +208,9 @@
                                                         <CheckBox fx:id="cbGenController" mnemonicParsing="false"
                                                                   text="产生Controller" GridPane.columnIndex="3"
                                                                   GridPane.rowIndex="6"/>
+                                                        <CheckBox fx:id="cbEnableSwagger" mnemonicParsing="false"
+                                                                  text="开启Swagger" GridPane.columnIndex="4"
+                                                                  GridPane.rowIndex="6"/>
                                                     </children>
                                                 </HBox>
 

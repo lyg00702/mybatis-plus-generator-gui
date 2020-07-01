@@ -41,4 +41,6 @@ public class GeneratorConfig {
 
 	private boolean genController;
 
+	private boolean enableSwagger;
+
 }
