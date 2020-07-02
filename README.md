@@ -11,3 +11,7 @@
 
 ## UI主界面
 [![](https://s1.ax1x.com/2020/04/05/GDJ1W8.png)](https://s1.ax1x.com/2020/04/05/GDJ1W8.png "markdown")
+
+## 打包命令
+mvn jfx:build-jar
+可执行Jar包路径：target\jfx\app\mybatis-plus-generator-gui.jar
