@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import java.lang.*?>
-<?import com.sun.javafx.scene.control.skin.CustomColorDialog.ControlsPane?>
 <BorderPane prefHeight="613.0" prefWidth="918.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lyg.mybatis.controller.MainUIController">
     <top>
@@ -202,8 +201,8 @@
                                                                   mnemonicParsing="false" selected="true"
                                                                   text="支持Lombok" GridPane.columnIndex="1"
                                                                   GridPane.rowIndex="6"/>
-                                                        <CheckBox fx:id="cbOverrideEntity" mnemonicParsing="false" selected="true"
-                                                                  text="覆盖实体类" GridPane.columnIndex="2"
+                                                        <CheckBox fx:id="cbOverride" mnemonicParsing="false" selected="false"
+                                                                  text="覆盖" GridPane.columnIndex="2"
                                                                   GridPane.rowIndex="6"/>
                                                         <CheckBox fx:id="cbGenController" mnemonicParsing="false"
                                                                   text="产生Controller" GridPane.columnIndex="3"

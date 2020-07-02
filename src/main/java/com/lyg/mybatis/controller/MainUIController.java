@@ -74,7 +74,7 @@ public class MainUIController  extends BaseFXController{
     @FXML
     private CheckBox cbSupportLombok;
     @FXML
-    private CheckBox cbOverrideEntity;
+    private CheckBox cbOverride;
     @FXML
     private CheckBox cbGenController;
     @FXML
@@ -183,7 +183,7 @@ public class MainUIController  extends BaseFXController{
         gc.setIdType(IdType.AUTO);
         gc.setAuthor(txtAuthor.getText());
         gc.setMapperName("%sDao");
-        gc.setFileOverride(true);
+        gc.setFileOverride(cbOverride.isSelected());
         gc.setOpen(false);
         mpg.setGlobalConfig(gc);
 
@@ -498,7 +498,7 @@ public class MainUIController  extends BaseFXController{
 
     private void setTooltip() {
         choiceBoxEncoding.setTooltip(new Tooltip("生成文件的编码，必选"));
-        cbOverrideEntity.setTooltip(new Tooltip("重新生成时把原实体类文件覆盖"));
+        cbOverride.setTooltip(new Tooltip("重新生成时把原实体类文件覆盖"));
     }
 
     public GeneratorConfig getGeneratorConfigFromUI() {
@@ -514,7 +514,7 @@ public class MainUIController  extends BaseFXController{
 
         generatorConfig.setEncoding(choiceBoxEncoding.getValue());
         generatorConfig.setSupportLombok(cbSupportLombok.isSelected());
-        generatorConfig.setOverrideEntity(cbOverrideEntity.isSelected());
+        generatorConfig.setOverride(cbOverride.isSelected());
         generatorConfig.setGenController(cbGenController.isSelected());
         generatorConfig.setEnableSwagger(cbEnableSwagger.isSelected());
 
@@ -528,7 +528,7 @@ public class MainUIController  extends BaseFXController{
         txtLogicDeletedField.setText(generatorConfig.getLogicDeletedField());
         txtAuthor.setText(generatorConfig.getAuthor());
         txtModuleName.setText(generatorConfig.getModuleName());
-        cbOverrideEntity.setSelected(generatorConfig.isOverrideEntity());
+        cbOverride.setSelected(generatorConfig.isOverride());
         cbSupportLombok.setSelected(generatorConfig.isSupportLombok());
         txtProjectPackage.setText(generatorConfig.getProjectPackage());
         choiceBoxEncoding.setValue(generatorConfig.getEncoding());

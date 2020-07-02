@@ -35,7 +35,7 @@ public class GeneratorConfig {
 
 	private String encoding;
 
-	private boolean overrideEntity;
+	private boolean override;
 
 	private boolean supportLombok;
 
