@@ -201,15 +201,27 @@
                                                                   mnemonicParsing="false" selected="true"
                                                                   text="支持Lombok" GridPane.columnIndex="1"
                                                                   GridPane.rowIndex="6"/>
-                                                        <CheckBox fx:id="cbOverride" mnemonicParsing="false" selected="false"
-                                                                  text="覆盖" GridPane.columnIndex="2"
-                                                                  GridPane.rowIndex="6"/>
-                                                        <CheckBox fx:id="cbGenController" mnemonicParsing="false"
-                                                                  text="产生Controller" GridPane.columnIndex="3"
-                                                                  GridPane.rowIndex="6"/>
                                                         <CheckBox fx:id="cbEnableSwagger" mnemonicParsing="false"
                                                                   text="开启Swagger" GridPane.columnIndex="4"
                                                                   GridPane.rowIndex="6"/>
+                                                    </children>
+                                                </HBox>
+
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1"
+                                                      GridPane.columnSpan="3" GridPane.rowIndex="7">
+                                                    <children>
+                                                        <CheckBox fx:id="cbOverride" mnemonicParsing="false" selected="false"
+                                                                  text="覆盖" GridPane.columnIndex="2"/>
+                                                        <CheckBox fx:id="cbGenEntity" mnemonicParsing="false" selected="true"
+                                                                  text="产生entity" GridPane.columnIndex="4"/>
+                                                        <CheckBox fx:id="cbGenDAO" mnemonicParsing="false" selected="true"
+                                                                  text="产生DAO" GridPane.columnIndex="4"/>
+                                                        <CheckBox fx:id="cbGenXML" mnemonicParsing="false" selected="true"
+                                                                  text="产生XML" GridPane.columnIndex="4"/>
+                                                        <CheckBox fx:id="cbGenService" mnemonicParsing="false" selected="true"
+                                                                  text="产生service" GridPane.columnIndex="4"/>
+                                                        <CheckBox fx:id="cbGenController" mnemonicParsing="false" selected="true"
+                                                                  text="产生controller" GridPane.columnIndex="4"/>
                                                     </children>
                                                 </HBox>
 

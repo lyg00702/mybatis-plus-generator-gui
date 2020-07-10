@@ -43,4 +43,12 @@ public class GeneratorConfig {
 
 	private boolean enableSwagger;
 
+	private boolean genEntity;
+
+	private boolean genDAO;
+
+	private boolean genXML;
+
+	private boolean genService;
+
 }

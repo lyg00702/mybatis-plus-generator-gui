@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.builder.ConfigBuilder;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.rules.FileType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.lyg.mybatis.config.FXMLPage;
@@ -77,6 +79,14 @@ public class MainUIController  extends BaseFXController{
     private CheckBox cbOverride;
     @FXML
     private CheckBox cbGenController;
+    @FXML
+    private CheckBox cbGenEntity;
+    @FXML
+    private CheckBox cbGenDAO;
+    @FXML
+    private CheckBox cbGenXML;
+    @FXML
+    private CheckBox cbGenService;
     @FXML
     private CheckBox cbEnableSwagger;
     @FXML
@@ -222,6 +232,39 @@ public class MainUIController  extends BaseFXController{
             }
         });
         cfg.setFileOutConfigList(focList);
+
+        cfg.setFileCreate(new IFileCreate() {
+            @Override
+            public boolean isCreate(ConfigBuilder configBuilder, FileType fileType, String filePath) {
+                boolean isCreate = true;
+
+                //覆盖generator core 方法
+                if(FileType.CONTROLLER.equals(fileType)){
+                    isCreate = cbGenController.isSelected();
+                }else if(FileType.ENTITY.equals(fileType)){
+                    isCreate = cbGenEntity.isSelected();
+                }else if(FileType.MAPPER.equals(fileType)){
+                    isCreate = cbGenDAO.isSelected();
+                }else if(FileType.OTHER.equals(fileType)){
+                    //XML = OTHER 有些惊奇
+                    isCreate = cbGenXML.isSelected();
+                }else if(FileType.SERVICE.equals(fileType) || FileType.SERVICE_IMPL.equals(fileType)){
+                    isCreate = cbGenService.isSelected();
+                }
+
+                // 全局判断【默认】
+                if(isCreate){
+                    File file = new File(filePath);
+                    boolean exist = file.exists();
+                    if (!exist) {
+                        file.getParentFile().mkdirs();
+                    }
+                }
+
+                return isCreate;
+            }
+        });
+
         mpg.setCfg(cfg);
         mpg.setTemplate(new TemplateConfig().setXml(null));
 
@@ -498,7 +541,7 @@ public class MainUIController  extends BaseFXController{
 
     private void setTooltip() {
         choiceBoxEncoding.setTooltip(new Tooltip("生成文件的编码，必选"));
-        cbOverride.setTooltip(new Tooltip("重新生成时把原实体类文件覆盖"));
+        cbOverride.setTooltip(new Tooltip("覆盖勾选的文件类型"));
     }
 
     public GeneratorConfig getGeneratorConfigFromUI() {
@@ -516,6 +559,10 @@ public class MainUIController  extends BaseFXController{
         generatorConfig.setSupportLombok(cbSupportLombok.isSelected());
         generatorConfig.setOverride(cbOverride.isSelected());
         generatorConfig.setGenController(cbGenController.isSelected());
+        generatorConfig.setGenEntity(cbGenEntity.isSelected());
+        generatorConfig.setGenDAO(cbGenDAO.isSelected());
+        generatorConfig.setGenXML(cbGenXML.isSelected());
+        generatorConfig.setGenService(cbGenService.isSelected());
         generatorConfig.setEnableSwagger(cbEnableSwagger.isSelected());
 
         return generatorConfig;
