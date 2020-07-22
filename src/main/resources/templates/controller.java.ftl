@@ -2,11 +2,10 @@ package ${package.Controller};
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
-
-<#if restControllerStyle>
 import org.springframework.web.bind.annotation.RestController;
-<#else>
-import org.springframework.stereotype.Controller;
+
+<#if swagger2>
+import io.swagger.annotations.Api;
 </#if>
 <#if superControllerClassPackage??>
 import ${superControllerClassPackage};
