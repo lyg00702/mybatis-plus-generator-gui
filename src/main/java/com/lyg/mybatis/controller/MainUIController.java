@@ -558,6 +558,7 @@ public class MainUIController  extends BaseFXController{
         generatorConfig.setEncoding(choiceBoxEncoding.getValue());
         generatorConfig.setSupportLombok(cbSupportLombok.isSelected());
         generatorConfig.setOverride(cbOverride.isSelected());
+
         generatorConfig.setGenController(cbGenController.isSelected());
         generatorConfig.setGenEntity(cbGenEntity.isSelected());
         generatorConfig.setGenDAO(cbGenDAO.isSelected());
@@ -570,14 +571,23 @@ public class MainUIController  extends BaseFXController{
 
     public void setGeneratorConfigIntoUI(GeneratorConfig generatorConfig) {
         txtProjectFolder.setText(generatorConfig.getProjectFolder());
+
         txtTargetProject.setText(generatorConfig.getModelPackageTargetFolder());
+        txtAuthor.setText(generatorConfig.getAuthor());
         txtSuperController.setText(generatorConfig.getSuperController());
         txtLogicDeletedField.setText(generatorConfig.getLogicDeletedField());
-        txtAuthor.setText(generatorConfig.getAuthor());
-        txtModuleName.setText(generatorConfig.getModuleName());
-        cbOverride.setSelected(generatorConfig.isOverride());
-        cbSupportLombok.setSelected(generatorConfig.isSupportLombok());
         txtProjectPackage.setText(generatorConfig.getProjectPackage());
+        txtModuleName.setText(generatorConfig.getModuleName());
+
         choiceBoxEncoding.setValue(generatorConfig.getEncoding());
+        cbSupportLombok.setSelected(generatorConfig.isSupportLombok());
+        cbOverride.setSelected(generatorConfig.isOverride());
+
+        cbGenController.setSelected(generatorConfig.isGenController());
+        cbGenEntity.setSelected(generatorConfig.isGenEntity());
+        cbGenDAO.setSelected(generatorConfig.isGenDAO());
+        cbGenXML.setSelected(generatorConfig.isGenXML());
+        cbGenService.setSelected(generatorConfig.isGenService());
+        cbEnableSwagger.setSelected(generatorConfig.isEnableSwagger());
     }
 }
