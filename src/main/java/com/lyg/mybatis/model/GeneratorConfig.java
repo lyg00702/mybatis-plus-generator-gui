@@ -25,6 +25,8 @@ public class GeneratorConfig {
 
 	private String moduleName;
 
+	private String tablePrefix;
+
 	private String domainObjectName;
 
 	private String author;

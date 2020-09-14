@@ -14,6 +14,7 @@ import com.lyg.mybatis.config.FXMLPage;
 import com.lyg.mybatis.model.DatabaseConfig;
 import com.lyg.mybatis.model.DbType;
 import com.lyg.mybatis.model.GeneratorConfig;
+import com.lyg.mybatis.model.UITableColumnVO;
 import com.lyg.mybatis.util.ConfigHelper;
 import com.lyg.mybatis.util.DbUtil;
 import com.lyg.mybatis.view.AlertUtil;
@@ -63,6 +64,8 @@ public class MainUIController  extends BaseFXController{
     @FXML
     private TextField txtModuleName;
     @FXML
+    private TextField txtTablePrefix;
+    @FXML
     private TextField txtSuperController;
     @FXML
     private TextField txtLogicDeletedField;
@@ -96,6 +99,8 @@ public class MainUIController  extends BaseFXController{
     private TreeView<String> tvLeftDB;
     @FXML
     private ChoiceBox<String> choiceBoxEncoding;
+    @FXML
+    private CheckBox cbAutoKey;
 
     /**
      * Current selected databaseConfig
@@ -190,7 +195,11 @@ public class MainUIController  extends BaseFXController{
         String projectPath = txtProjectFolder.getText();
         gc.setOutputDir(projectPath + File.separator +  txtTargetProject.getText());
         gc.setSwagger2(cbEnableSwagger.isSelected());
-        gc.setIdType(IdType.AUTO);
+        if(cbAutoKey.isSelected()){
+            gc.setIdType(IdType.AUTO);
+        }else {
+            gc.setIdType(IdType.INPUT);
+        }
         gc.setAuthor(txtAuthor.getText());
         gc.setMapperName("%sDao");
         gc.setFileOverride(cbOverride.isSelected());
@@ -296,7 +305,8 @@ public class MainUIController  extends BaseFXController{
         strategy.setInclude(arrTable);
 //        strategy.setSuperEntityColumns("id");
         strategy.setControllerMappingHyphenStyle(true);
-        strategy.setTablePrefix(pc.getModuleName() + "_");
+
+        strategy.setTablePrefix(txtTablePrefix.getText());
         mpg.setStrategy(strategy);
         // 选择 freemarker 引擎需要指定如下加，注意 pom 依赖必须有！
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
@@ -508,6 +518,23 @@ public class MainUIController  extends BaseFXController{
                         listViewTables.setItems(observableList);
 
                         treeCell.setStyle(SELECTED_BACKGROUND);
+
+                        //获取栏位属性
+                        try {
+                            List<UITableColumnVO> tableColumns = DbUtil.getTableColumns(selectedDatabaseConfig, tableName);
+                            UITableColumnVO autoIncrKey =
+                                    tableColumns.stream().filter(p -> p.getAutoincrement() == true).findFirst().orElse(null);
+
+                            if(autoIncrKey != null){
+                                //设置自增主键
+                                cbAutoKey.setSelected(true);
+                            }else {
+                                cbAutoKey.setSelected(false);
+                            }
+                        } catch (Exception e) {
+                            _LOG.error(e.getMessage(), e);
+                            AlertUtil.showErrorAlert(e.getMessage());
+                        }
                     }
                 }
             });
@@ -554,6 +581,7 @@ public class MainUIController  extends BaseFXController{
         generatorConfig.setLogicDeletedField(txtLogicDeletedField.getText().trim());
         generatorConfig.setProjectPackage(txtProjectPackage.getText());
         generatorConfig.setModuleName(txtModuleName.getText());
+        generatorConfig.setTablePrefix(txtTablePrefix.getText());
 
         generatorConfig.setEncoding(choiceBoxEncoding.getValue());
         generatorConfig.setSupportLombok(cbSupportLombok.isSelected());
@@ -578,6 +606,7 @@ public class MainUIController  extends BaseFXController{
         txtLogicDeletedField.setText(generatorConfig.getLogicDeletedField());
         txtProjectPackage.setText(generatorConfig.getProjectPackage());
         txtModuleName.setText(generatorConfig.getModuleName());
+        txtTablePrefix.setText(generatorConfig.getTablePrefix());
 
         choiceBoxEncoding.setValue(generatorConfig.getEncoding());
         cbSupportLombok.setSelected(generatorConfig.isSupportLombok());
