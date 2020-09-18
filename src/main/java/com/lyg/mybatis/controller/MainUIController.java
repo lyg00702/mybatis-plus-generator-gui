@@ -306,7 +306,9 @@ public class MainUIController  extends BaseFXController{
 //        strategy.setSuperEntityColumns("id");
         strategy.setControllerMappingHyphenStyle(true);
 
-        strategy.setTablePrefix(txtTablePrefix.getText());
+        if(StringUtils.isNotBlank(txtTablePrefix.getText())){
+            strategy.setTablePrefix(txtTablePrefix.getText());
+        }
         mpg.setStrategy(strategy);
         // 选择 freemarker 引擎需要指定如下加，注意 pom 依赖必须有！
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
